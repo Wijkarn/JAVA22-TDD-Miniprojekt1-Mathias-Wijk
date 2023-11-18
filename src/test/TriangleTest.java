@@ -25,14 +25,42 @@ class TriangleTest {
 	String[] noTriangleString2 = { "2", "0", "3" };
 	String[] noTriangleString3 = { "4", "2", "0" };
 	String[] scaleneString = { "4", "2", "3" };
-	String[] isoscelesString = { "3", "2", "3" };
+	String[] isoscelesString1 = { "3", "2", "3" };
+	String[] isoscelesString2 = { "2", "3", "3" };
+	String[] isoscelesString3 = { "3", "3", "2" };
 	String[] equilateralString = { "3", "3", "3" };
 	String[] NANString = { "s", "y", "j" };
 	String[] shortString = { "1", "2"};
 	String[] longString = { "1", "2", "3", "4"};
 	
-	
 	// toString
+	
+	@Test
+	@DisplayName("Invalid Size of triangle 1")
+	void toStringCheckInvalidSize1() {
+		String[] string = { "1", "4", "2" };
+		Triangle triangle = new Triangle(string);
+		String result = triangle.toString();
+		assertEquals("1, 4, 2, This is not a triangle", result);
+	}
+	
+	@Test
+	@DisplayName("Invalid Size of triangle 2")
+	void toStringCheckInvalidSize2() {
+		String[] string = { "4", "2", "1" };
+		Triangle triangle = new Triangle(string);
+		String result = triangle.toString();
+		assertEquals("4, 2, 1, This is not a triangle", result);
+	}
+	
+	@Test
+	@DisplayName("Invalid Size of triangle 3")
+	void toStringCheckInvalidSize3() {
+		String[] string = { "1", "2", "4" };
+		Triangle triangle = new Triangle(string);
+		String result = triangle.toString();
+		assertEquals("1, 2, 4, This is not a triangle", result);
+	}
 	
 	@Test
 	@DisplayName("Test toString if not a triangle no input")
@@ -77,9 +105,25 @@ class TriangleTest {
 	@Test
 	@DisplayName("Test toString if Isosceles works")
 	void toStringCheckIsosceles() {
-		Triangle triangle = new Triangle(isoscelesString);
+		Triangle triangle = new Triangle(isoscelesString1);
 		String result = triangle.toString();
 		assertEquals("3, 2, 3, This is a Isosceles triangle", result);
+	}
+
+	@Test
+	@DisplayName("Test toString if Isosceles works 2")
+	void toStringCheckIsosceles2() {
+		Triangle triangle = new Triangle(isoscelesString2);
+		String result = triangle.toString();
+		assertEquals("2, 3, 3, This is a Isosceles triangle", result);
+	}
+
+	@Test
+	@DisplayName("Test toString if Isosceles works 3")
+	void toStringCheckIsosceles3() {
+		Triangle triangle = new Triangle(isoscelesString3);
+		String result = triangle.toString();
+		assertEquals("3, 3, 2, This is a Isosceles triangle", result);
 	}
 	
 	@Test
@@ -157,7 +201,7 @@ class TriangleTest {
 	@Test
 	@DisplayName("Test getCurrent_type if Isosceles works")
 	void getCurrent_typeCheckIsosceles() {
-		Triangle triangle = new Triangle(isoscelesString);
+		Triangle triangle = new Triangle(isoscelesString1);
 		Enum<?> result = triangle.getCurrent_type();
 		assertEquals(TYPE.ISOSCELES, result);
 	}
@@ -197,6 +241,7 @@ class TriangleTest {
 		triangle.getUserInput();
 		String result = triangle.toString();
 		assertEquals("0, 2, 3, This is not a triangle", result);
+		System.setIn(System.in);
 	}
 	
 	@Test
@@ -209,6 +254,7 @@ class TriangleTest {
 		triangle.getUserInput();
 		String result = triangle.toString();
 		assertEquals("0, 0, 0, This is not a triangle", result);
+		System.setIn(System.in);
 	}
 	
 	@Test
@@ -221,6 +267,7 @@ class TriangleTest {
 		triangle.getUserInput();
 		String result = triangle.toString();
 		assertEquals("0, 0, 0, This is not a triangle", result);
+		System.setIn(System.in);
 	}
 
 }
