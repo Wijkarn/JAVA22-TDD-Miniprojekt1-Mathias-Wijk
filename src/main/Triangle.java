@@ -24,9 +24,8 @@ public class Triangle {
 
 	public Triangle(int a, int b, int c) {
 		this.setCurrent_type(a, b, c);
-
 	}
- 
+
 	public Triangle(String[] in) {
 		if (in.length == 3) {
 			try {
@@ -44,7 +43,7 @@ public class Triangle {
 
 	// used with empty constructor
 	public void getUserInput() {
-		System.out.println("Enter the 3 triangle sides as int, separated by coma ',' \n Ex. 1,2,3");
+		System.out.println("Enter the 3 triangle sides as int, separated by coma ',' \nEx. 1,2,3");
 		Scanner scnr = new Scanner(System.in);
 		String[] in = scnr.nextLine().split(",");
 		scnr.close();
@@ -98,10 +97,11 @@ public class Triangle {
 		System.out.println(temp);
 		return temp;
 	}
-
+/*-
 	public static void main(String[] args) {
-//			Triangle triangle = new Triangle();
-//			triangle.getUserInput();
-//			triangle.getCurrent_type();
+			Triangle triangle = new Triangle();
+			triangle.getUserInput();
+			triangle.getCurrent_type();
 	}
+	*/
 }

@@ -2,7 +2,10 @@ package test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-import org.junit.jupiter.api.BeforeAll;
+import java.util.Arrays;
+
+import java.io.ByteArrayInputStream;
+
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -18,45 +21,127 @@ class TriangleTest {
 		//triangle = new Triangle();
 	}
 	*/
-	String[] noTriangleString = { "0", "2", "3" };
+	String[] noTriangleString1 = { "0", "2", "3" };
+	String[] noTriangleString2 = { "2", "0", "3" };
+	String[] noTriangleString3 = { "4", "2", "0" };
 	String[] scaleneString = { "4", "2", "3" };
 	String[] isoscelesString = { "3", "2", "3" };
 	String[] equilateralString = { "3", "3", "3" };
-	String[] NANString = { "s", ",", "j" };
-	String[] ShortString = { "1", "2"};
+	String[] NANString = { "s", "y", "j" };
+	String[] shortString = { "1", "2"};
+	String[] longString = { "1", "2", "3", "4"};
+	
+	
+	// toString
 	
 	@Test
-	@DisplayName("Test toString if not a triangle works")
+	@DisplayName("Test toString if not a triangle no input")
 	void toStringCheckNotTriangle() {
-		String result = new Triangle(noTriangleString).toString();
+		Triangle triangle = new Triangle();
+		String result = triangle.toString();
+		assertEquals("0, 0, 0, This is not a triangle", result);
+	}
+	
+	@Test
+	@DisplayName("Test toString if not a triangle 1")
+	void toStringCheckNotTriangle1() {
+		Triangle triangle = new Triangle(noTriangleString1);
+		String result = triangle.toString();
 		assertEquals("0, 2, 3, This is not a triangle", result);
+	}
+	
+	@Test
+	@DisplayName("Test toString if not a triangle 2")
+	void toStringCheckNotTriangle2() {
+		Triangle triangle = new Triangle(noTriangleString2);
+		String result = triangle.toString();
+		assertEquals("2, 0, 3, This is not a triangle", result);
+	}
+	
+	@Test
+	@DisplayName("Test toString if not a triangle 3")
+	void toStringCheckNotTriangle3() {
+		Triangle triangle = new Triangle(noTriangleString3);
+		String result = triangle.toString();
+		assertEquals("4, 2, 0, This is not a triangle", result);
 	}
 	
 	@Test
 	@DisplayName("Test toString if Scalene works")
 	void toStringCheckScalene() {
-		String result = new Triangle(scaleneString).toString();
+		Triangle triangle = new Triangle(scaleneString);
+		String result = triangle.toString();
 		assertEquals("4, 2, 3, This is a Scalene triangle", result);
 	}
 
 	@Test
 	@DisplayName("Test toString if Isosceles works")
 	void toStringCheckIsosceles() {
-		String result = new Triangle(isoscelesString).toString();
+		Triangle triangle = new Triangle(isoscelesString);
+		String result = triangle.toString();
 		assertEquals("3, 2, 3, This is a Isosceles triangle", result);
 	}
 	
 	@Test
 	@DisplayName("Test toString if Equilateral works")
 	void toStringCheckEquilateral() {
-		String result = new Triangle(equilateralString).toString();
+		Triangle triangle = new Triangle(equilateralString);
+		String result = triangle.toString();
 		assertEquals("3, 3, 3, This is a Equilateral triangle", result);
 	}
 	
 	@Test
-	@DisplayName("Test getCurrent_type if not a triangle works")
-	void getCurrent_typeCheckNotTriangle() {
-		Triangle triangle = new Triangle(noTriangleString);
+	@DisplayName("Test getCurrent_type if Equilateral works")
+	void getCurrent_typeCheckEquilateral() {
+		Triangle triangle = new Triangle(equilateralString);
+		Enum<?> result = triangle.getCurrent_type();
+		assertEquals(TYPE.EQUILATERAL, result);
+	}
+	
+	@Test
+	@DisplayName("Test toString if short input")
+	void toStringCheckShortInput() {
+		String result = new Triangle(shortString).toString();
+		assertEquals("0, 0, 0, This is not a triangle", result);
+	}
+	
+	@Test
+	@DisplayName("Test toString if short input")
+	void toStringCheckLongInput() {
+		String result = new Triangle(longString).toString();
+		assertEquals("0, 0, 0, This is not a triangle", result);
+	}
+	
+	// getCurrent_type
+	
+	@Test
+	@DisplayName("Test getCurrent_type if not a triangle 1")
+	void getCurrent_typeNoInput() {
+		Triangle triangle = new Triangle();
+		Enum<?> result = triangle.getCurrent_type();
+		assertEquals(null, result);
+	}
+	
+	@Test
+	@DisplayName("Test getCurrent_type if not a triangle 1")
+	void getCurrent_typeCheckNotTriangle1() {
+		Triangle triangle = new Triangle(noTriangleString1);
+		Enum<?> result = triangle.getCurrent_type();
+		assertEquals(null, result);
+	}
+	
+	@Test
+	@DisplayName("Test getCurrent_type if not a triangle 2")
+	void getCurrent_typeCheckNotTriangle2() {
+		Triangle triangle = new Triangle(noTriangleString2);
+		Enum<?> result = triangle.getCurrent_type();
+		assertEquals(null, result);
+	}
+	
+	@Test
+	@DisplayName("Test getCurrent_type if not a triangle 3")
+	void getCurrent_typeCheckNotTriangle3() {
+		Triangle triangle = new Triangle(noTriangleString3);
 		Enum<?> result = triangle.getCurrent_type();
 		assertEquals(null, result);
 	}
@@ -78,14 +163,6 @@ class TriangleTest {
 	}
 	
 	@Test
-	@DisplayName("Test getCurrent_type if Equilateral works")
-	void getCurrent_typeCheckEquilateral() {
-		Triangle triangle = new Triangle(equilateralString);
-		Enum<?> result = triangle.getCurrent_type();
-		assertEquals(TYPE.EQUILATERAL, result);
-	}
-	
-	@Test
 	@DisplayName("Test toString if wrong input")
 	void toStringCheckNAN() {
 		String result = new Triangle(NANString).toString();
@@ -101,18 +178,49 @@ class TriangleTest {
 	}
 	
 	@Test
-	@DisplayName("Test toString if short input")
-	void toStringCheckShortInput() {
-		String result = new Triangle(ShortString).toString();
+	@DisplayName("Test getCurrent_type if short input")
+	void getCurrent_typeCheckShortInput() {
+		Triangle triangle = new Triangle(shortString);
+		Enum<?> result = triangle.getCurrent_type();
+		assertEquals(null, result);
+	}
+	
+	// getUserInput
+	
+	@Test
+	@DisplayName("Test toString if not a triangle 1")
+	void getUserInput_toStringCheckNotTriangle1() {
+		String input = "0,2,3";
+        ByteArrayInputStream inputStream = new ByteArrayInputStream(input.getBytes());
+        System.setIn(inputStream);
+		Triangle triangle = new Triangle();
+		triangle.getUserInput();
+		String result = triangle.toString();
+		assertEquals("0, 2, 3, This is not a triangle", result);
+	}
+	
+	@Test
+	@DisplayName("Test toString if not a triangle. scanner")
+	void getUserInput_toStringCheckShortInput() {
+		String input = "0,2";
+        ByteArrayInputStream inputStream = new ByteArrayInputStream(input.getBytes());
+        System.setIn(inputStream);
+		Triangle triangle = new Triangle();
+		triangle.getUserInput();
+		String result = triangle.toString();
 		assertEquals("0, 0, 0, This is not a triangle", result);
 	}
 	
 	@Test
-	@DisplayName("Test getCurrent_type if short input")
-	void getCurrent_typeCheckShortInput() {
-		Triangle triangle = new Triangle(ShortString);
-		Enum<?> result = triangle.getCurrent_type();
-		assertEquals(null, result);
+	@DisplayName("Test toString if NAN. scanner")
+	void getUserInput_toStringNAN() {
+		String input = "s,y,j";
+        ByteArrayInputStream inputStream = new ByteArrayInputStream(input.getBytes());
+        System.setIn(inputStream);
+		Triangle triangle = new Triangle();
+		triangle.getUserInput();
+		String result = triangle.toString();
+		assertEquals("0, 0, 0, This is not a triangle", result);
 	}
 
 }
