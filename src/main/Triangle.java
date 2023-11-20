@@ -4,9 +4,10 @@ import java.util.Scanner;
 
 /**
  * 
- * @author lukas kurasinski Program returns the name of a triangle, based on the
- *         input. The input are 3 length, describing 3 sides of a triangle,
- *         Sides can be set via constructors or by a method
+ * @author lukas kurasinski
+ *Program returns the name of a triangle, based on the input.
+ *The input are 3 length, describing 3 sides of a triangle,
+ *Sides can be set via constructors or by a method
  */
 public class Triangle {
 	public static enum TYPE {
@@ -24,8 +25,9 @@ public class Triangle {
 
 	public Triangle(int a, int b, int c) {
 		this.setCurrent_type(a, b, c);
-	}
 
+	}
+	
 	public Triangle(String[] in) {
 		if (in.length == 3) {
 			try {
@@ -38,12 +40,11 @@ public class Triangle {
 		}
 	}
 
-	public Triangle() {
-	}
+	public Triangle() {}
 
-	// used with empty constructor
+	//used with empty constructor
 	public void getUserInput() {
-		System.out.println("Enter the 3 triangle sides as int, separated by coma ',' \nEx. 1,2,3");
+		System.out.println("Enter the 3 triangle sides as int, separated by coma ',' \n Ex. 1,2,3");
 		Scanner scnr = new Scanner(System.in);
 		String[] in = scnr.nextLine().split(",");
 		scnr.close();
@@ -59,10 +60,12 @@ public class Triangle {
 		}
 	}
 
+
+
 	public void setCurrent_type(int a, int b, int c) {
 		this.a = a;
 		this.b = b;
-		this.c = c; 
+		this.c = c;
 		// not a triangle if atleast one side <=0 or
 		// sum of any two sides <= length of the third side
 		if (a <= 0 || b <= 0 || c <= 0) {
@@ -82,26 +85,25 @@ public class Triangle {
 		this.toString();
 		return current_type;
 	}
- 
+
 	public String toString() {
 		String temp = "";
 		if (this.current_type == null) {
-			temp = "" + this.a + ", " + this.b + ", " + this.c + ", This is not a triangle"; // Not a triangle
+			temp = "" + this.a + ", " + this.b + ", " + this.c + ", This is not a triangle";
 		} else if (this.current_type == TYPE.EQUILATERAL) {
-			temp = "" + this.a + ", " + this.b + ", " + this.c + ", This is a Equilateral triangle"; // All sides the same
+			temp = "" + this.a + ", " + this.b + ", " + this.c + ", This is a Equilateral triangle";
 		} else if (this.current_type == TYPE.SCALENE) {
-			temp = "" + this.a + ", " + this.b + ", " + this.c + ", This is a Scalene triangle"; // No side the same
+			temp = "" + this.a + ", " + this.b + ", " + this.c + ", This is a Scalene triangle";
 		} else if (this.current_type == TYPE.ISOSCELES) {
-			temp = "" + this.a + ", " + this.b + ", " + this.c + ", This is a Isosceles triangle"; // Two side the same
+			temp = "" + this.a + ", " + this.b + ", " + this.c + ", This is a Isosceles triangle";
 		}
 		System.out.println(temp);
 		return temp;
 	}
-/*-
+
 	public static void main(String[] args) {
-			Triangle triangle = new Triangle();
-			triangle.getUserInput();
-			triangle.getCurrent_type();
+//			Triangle triangle = new Triangle();
+//			triangle.getUserInput();
+//			triangle.getCurrent_type();
 	}
-	*/
 }

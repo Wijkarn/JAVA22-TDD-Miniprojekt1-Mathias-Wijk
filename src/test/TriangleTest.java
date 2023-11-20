@@ -2,8 +2,6 @@ package test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-import java.util.Arrays;
-
 import java.io.ByteArrayInputStream;
 
 import org.junit.jupiter.api.DisplayName;
@@ -13,14 +11,7 @@ import main.Triangle;
 import main.Triangle.TYPE;
 
 class TriangleTest {
-	/*-
-	Triangle triangle;
 	
-	@BeforeAll
-	void beforeAll() {
-		//triangle = new Triangle();
-	}
-	*/
 	String[] noTriangleString1 = { "0", "2", "3" };
 	String[] noTriangleString2 = { "2", "0", "3" };
 	String[] noTriangleString3 = { "4", "2", "0" };
@@ -281,7 +272,7 @@ class TriangleTest {
 	}
 
 	@Test
-	@DisplayName("Test toString if Scalene. Constructor")
+	@DisplayName("Test toString if Scalene. Constructor values")
 	void toStringConstructorCheckScalene() {
 		Triangle triangle = new Triangle(4, 2, 3);
 		String result = triangle.toString();
@@ -289,7 +280,7 @@ class TriangleTest {
 	}
 
 	@Test
-	@DisplayName("Test toString if Isosceles. Constructor")
+	@DisplayName("Test toString if Isosceles. Constructor values")
 	void toStringConstructorCheckIsosceles() {
 		Triangle triangle = new Triangle(3, 2, 3);
 		String result = triangle.toString();
@@ -297,7 +288,7 @@ class TriangleTest {
 	}
 
 	@Test
-	@DisplayName("Test toString if Equilateral. Constructor")
+	@DisplayName("Test toString if Equilateral. Constructor values")
 	void toStringConstructorCheckEquilateral() {
 		Triangle triangle = new Triangle(3, 3, 3);
 		String result = triangle.toString();
