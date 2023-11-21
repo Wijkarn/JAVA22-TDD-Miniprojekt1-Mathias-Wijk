@@ -1,5 +1,6 @@
 package test;
 
+import static org.junit.Assert.assertThrows;
 import static org.junit.jupiter.api.Assertions.*;
 
 import java.io.ByteArrayInputStream;
@@ -11,7 +12,7 @@ import main.Triangle;
 import main.Triangle.TYPE;
 
 class TriangleTest {
-	
+
 	String[] noTriangleString1 = { "0", "2", "3" };
 	String[] noTriangleString2 = { "2", "0", "3" };
 	String[] noTriangleString3 = { "4", "2", "0" };
@@ -129,7 +130,7 @@ class TriangleTest {
 	@DisplayName("Test getCurrent_type if Equilateral works")
 	void getCurrent_typeCheckEquilateral() {
 		Triangle triangle = new Triangle(equilateralString);
-		Enum<?> result = triangle.getCurrent_type();
+		TYPE result = triangle.getCurrent_type();
 		assertEquals(TYPE.EQUILATERAL, result);
 	}
 
@@ -153,39 +154,39 @@ class TriangleTest {
 	@DisplayName("Test getCurrent_type if not a triangle 1")
 	void getCurrent_typeNoInput() {
 		Triangle triangle = new Triangle();
-		Enum<?> result = triangle.getCurrent_type();
-		assertEquals(null, result);
+		TYPE result = triangle.getCurrent_type();
+		assertNull(result);
 	}
 
 	@Test
 	@DisplayName("Test getCurrent_type if not a triangle 1")
 	void getCurrent_typeCheckNotTriangle1() {
 		Triangle triangle = new Triangle(noTriangleString1);
-		Enum<?> result = triangle.getCurrent_type();
-		assertEquals(null, result);
+		TYPE result = triangle.getCurrent_type();
+		assertNull(result);
 	}
 
 	@Test
 	@DisplayName("Test getCurrent_type if not a triangle 2")
 	void getCurrent_typeCheckNotTriangle2() {
 		Triangle triangle = new Triangle(noTriangleString2);
-		Enum<?> result = triangle.getCurrent_type();
-		assertEquals(null, result);
+		TYPE result = triangle.getCurrent_type();
+		assertNull(result);
 	}
 
 	@Test
 	@DisplayName("Test getCurrent_type if not a triangle 3")
 	void getCurrent_typeCheckNotTriangle3() {
 		Triangle triangle = new Triangle(noTriangleString3);
-		Enum<?> result = triangle.getCurrent_type();
-		assertEquals(null, result);
+		TYPE result = triangle.getCurrent_type();
+		assertNull(result);
 	}
 
 	@Test
 	@DisplayName("Test getCurrent_type if Scalene works")
 	void getCurrent_typeCheckScalene() {
 		Triangle triangle = new Triangle(scaleneString);
-		Enum<?> result = triangle.getCurrent_type();
+		TYPE result = triangle.getCurrent_type();
 		assertEquals(TYPE.SCALENE, result);
 	}
 
@@ -193,7 +194,7 @@ class TriangleTest {
 	@DisplayName("Test getCurrent_type if Isosceles works")
 	void getCurrent_typeCheckIsosceles() {
 		Triangle triangle = new Triangle(isoscelesString1);
-		Enum<?> result = triangle.getCurrent_type();
+		TYPE result = triangle.getCurrent_type();
 		assertEquals(TYPE.ISOSCELES, result);
 	}
 
@@ -208,7 +209,7 @@ class TriangleTest {
 	@DisplayName("Test getCurrent_type if wrong input")
 	void getCurrent_typeCheckNAN() {
 		Triangle triangle = new Triangle(NANString);
-		Enum<?> result = triangle.getCurrent_type();
+		TYPE result = triangle.getCurrent_type();
 		assertEquals(null, result);
 	}
 
@@ -216,7 +217,7 @@ class TriangleTest {
 	@DisplayName("Test getCurrent_type if short input")
 	void getCurrent_typeCheckShortInput() {
 		Triangle triangle = new Triangle(shortString);
-		Enum<?> result = triangle.getCurrent_type();
+		TYPE result = triangle.getCurrent_type();
 		assertEquals(null, result);
 	}
 
@@ -264,7 +265,7 @@ class TriangleTest {
 	// toString with 3 ints in constructor
 
 	@Test
-	@DisplayName("Test toString if 0, 0, 0 input. Constructor")
+	@DisplayName("Test toString if 0, 0, 0 input. Constructor values")
 	void toStringConstructorCheckNotTriangle() {
 		Triangle triangle = new Triangle(0, 0, 0);
 		String result = triangle.toString();
@@ -293,6 +294,14 @@ class TriangleTest {
 		Triangle triangle = new Triangle(3, 3, 3);
 		String result = triangle.toString();
 		assertEquals("3, 3, 3, This is a Equilateral triangle", result);
+	}
+
+	// NullPointerException
+
+	@Test
+	@DisplayName("Test if throws NullPointerException")
+	void newTriangleTestNullPointerException() {
+		assertThrows(NullPointerException.class, () -> new Triangle(null));
 	}
 
 }

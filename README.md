@@ -4,7 +4,9 @@ I början var jag osäker på hur jag skulle skriva mina tester men efter kollat
  
 Jag hade kunna göra sammat tester på getCurrent_type men eftersom att det blir samma test som ska skrivas igen det inte är nödvändigt i detta exempel. 
 
-Jag har också gjort tester så att nästan alla branches är täckta. Jag har försökt täcka alla branches men det är två branches jag inte hittar.
+Jag har också gjort tester så att nästan alla branches är täckta. Eclipse säger att jag har missat 2 branches men det är två branches som aldrig kommer att hända med nuvarande kod.
+
+Jag testar en NullPointerException, men koden blir gul. Jag har försökt att hitta anledning till detta men har inte hittat någon.
 
 Ett problem jag hade var user input(scanner) i konsolen, men jag hittade en bra lösning som sätter ett värde i scannern/konsolen så att man inte behöver skriva i konsolen på varje test som använde konsolen.
 Här är ett exempel på ett sådant test:
@@ -21,4 +23,4 @@ void getUserInput_toStringCheckNotTriangle1() {
 }
 ```
 
-![Screenshot](tddmp1.png)
+![Code Coverage](tddmp1.png)
